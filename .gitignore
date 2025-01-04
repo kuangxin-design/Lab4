@@ -1,4 +1,4 @@
-# dev/Include/
-# dev/Lib/
-# dev/Scripts/
-# dev/**/__pycache__/
+dev/Include/
+dev/Lib/
+dev/Scripts/
+dev/**/__pycache__/

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>City Temperatures</title>
+</head>
+<body>
+    <h1>City Temperatures</h1>
+    <button id="update-button">Update</button>
+    <ul id="city-list"></ul>
+
+    <script>
+        document.getElementById("update-button").onclick = async function() {
+            const response = await fetch("/temperatures");
+            const data = await response.json();
+            const cityList = document.getElementById("city-list");
+            cityList.innerHTML = ""; // 清空列表
+
+            // 遍历返回的数据
+            for (const cityData of data.datas) {
+                const li = document.createElement("li");
+                
+                // 使用 cityData 对象中的数据
+                li.textContent = `${cityData.capital} (${cityData.country}): ${cityData.temperature}°C`;
+                cityList.appendChild(li);
+            }
+        };
+    </script>
+</body>
+</html>
