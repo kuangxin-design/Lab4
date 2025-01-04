@@ -8,13 +8,13 @@ import asyncio
 import uvicorn
 import os
 app = FastAPI()
-abspath=os.path.abspath('dev/web')
+abspath=os.path.abspath(os.getcwd()+'/dev/web')
 app.mount("/static", StaticFiles(directory=abspath), name="static")
 templates = Jinja2Templates(directory=abspath)
 
 # 读取城市数据
 async def read_cities():
-    path= os.path.abspath('dev/europe.csv')
+    path= os.path.abspath(os.getcwd()+'/dev/europe.csv')
     print(path)
     cities = []
     with open(path, 'r', encoding='utf-8') as csvfile:
