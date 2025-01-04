@@ -8,7 +8,8 @@ import asyncio
 import uvicorn
 import os
 app = FastAPI()
-abspath=os.path.abspath(os.getcwd()+'/dev/web')
+abspath=os.path.abspath(os.getcwd()+'/web')#部署
+# abspath=os.path.abspath(os.getcwd()+'/dev/web')#本地
 app.mount("/static", StaticFiles(directory=abspath), name="static")
 templates = Jinja2Templates(directory=abspath)
 
