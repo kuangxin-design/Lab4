@@ -7,6 +7,8 @@ import csv
 import asyncio
 import uvicorn
 import os
+PORT = 8000 
+HOST = '0.0.0.0'
 app = FastAPI()
 abspath=os.path.abspath(os.getcwd()+'/web')#部署
 # abspath=os.path.abspath(os.getcwd()+'/dev/web')#本地
@@ -50,5 +52,6 @@ async def get_temperatures():
     return {"datas": datas}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import uvicorn
+    uvicorn.run(app, host=HOST, port=PORT)
 
