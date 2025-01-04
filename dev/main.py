@@ -12,15 +12,17 @@ HOST = '0.0.0.0'
 PORT = int(os.environ.get("PORT", 8000))  # 如果没有设置环境变量，则使用8000
 
 app = FastAPI()
-abspath=os.path.abspath(os.getcwd()+'/web')#部署
-print('路径地址',abspath)
-# abspath=os.path.abspath(os.getcwd()+'/dev/web')#本地
+abspath=os.path.abspath('./web')
+print('当前工作路径',os.getcwd())
+print('静态文件工作路径',abspath)
+if not os.path.exists(abspath):
+    raise RuntimeError(f"目录'{abspath}'不存在")
 app.mount("/static", StaticFiles(directory=abspath), name="static")
 templates = Jinja2Templates(directory=abspath)
 
 # 读取城市数据
 async def read_cities():
-    path= os.path.abspath(os.getcwd()+'/dev/europe.csv')
+    path= os.path.abspath(os.getcwd()+'/europe.csv')
     print('读取城市数据',path)
     cities = []
     with open(path, 'r', encoding='utf-8') as csvfile:
